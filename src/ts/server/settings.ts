@@ -18,8 +18,13 @@ export async function loadSettings() {
 		const json = await readFileAsync(settingsPath, 'utf8');
 		return JSON.parse(json) as Settings;
 	} catch (e) {
-		writeFileAsync(settingsPath, '{}', 'utf8');
-		return {} as Settings;
+		if (e === 'ENOENT') {
+			writeFileAsync(settingsPath, '{}', 'utf8');
+			return {} as Settings;
+		} else {
+			console.log("Error reading settings file: " + e);
+			return {} as Settings;
+		}
 	}
 }
 
