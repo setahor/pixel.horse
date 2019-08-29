@@ -14,8 +14,13 @@ const settingsPath = paths.pathTo('settings', `settings.json`);
 
 /* istanbul ignore next */
 export async function loadSettings() {
-	const json = await readFileAsync(settingsPath, 'utf8');
-	return JSON.parse(json) as Settings;
+	try {
+		const json = await readFileAsync(settingsPath, 'utf8');
+		return JSON.parse(json) as Settings;
+	} catch (e) {
+		writeFileAsync(settingsPath, '{}', 'utf8');
+		return {} as Settings;
+	}
 }
 
 /* istanbul ignore next */
