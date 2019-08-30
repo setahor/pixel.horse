@@ -23,6 +23,36 @@ export const CREDITS: Credit[] = [
 	// 	avatarIndex: 0, // place of the avatar in /assets/images/avatars.jpg
 	// 	links: ['https://twitter.com/your_twitter_handle'],
 	// },
+	{
+		name: 'Bytewave',
+		title: 'Programmer / Moderator',
+		avatarIndex: 0,
+		links: ['https://twitter.com/BytewaveMLP', 'https://github.com/BytewaveMLP']
+	},
+	{
+		name: 'Cloud Hop',
+		title: 'Programmer / Moderator',
+		avatarIndex: 1,
+		links: ['https://twitter.com/blackhole0173', 'https://github.com/blackhole12']
+	},
+	{
+		name: 'CyberPon3',
+		title: 'Programmer / Moderator',
+		avatarIndex: 2,
+		links: ['https://twitter.com/CyberPon3']
+	},
+	{
+		name: 'NotMyWing',
+		title: 'Programmer / Moderator',
+		avatarIndex: 3,
+		links: ['https://twitter.com/NotMyWing', 'https://github.com/Neeve01']
+	},
+	{
+		name: 'Stubenhocker',
+		title: 'Programmer',
+		avatarIndex: 4,
+		links: ['https://github.com/Stubenhocker1399']
+	}
 ];
 
 export const CONTRIBUTORS: Contributors[] = [
@@ -36,12 +66,6 @@ export const CONTRIBUTORS: Contributors[] = [
 			{ name: 'ShareMyShipment', links: ['https://www.deviantart.com/sharemyshipment'] },
 			{ name: 'Velenor', links: ['https://www.deviantart.com/velenor'] },
 			{ name: 'OtakuAP', links: ['https://www.deviantart.com/otakuap'] },
-		],
-	},
-	{
-		group: 'Programmers & Artists',
-		contributors: [
-			{ name: 'CyberPon3', links: ['https://www.deviantart.com/cyberpon3'] },
 		],
 	},
 	{
