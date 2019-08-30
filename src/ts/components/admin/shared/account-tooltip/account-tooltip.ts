@@ -5,16 +5,16 @@ import { getAge } from '../../../../common/adminUtils';
 const year = (new Date()).getFullYear();
 
 @Component({
-	selector: 'account-tooltip',
-	templateUrl: 'account-tooltip.pug',
+  selector: 'account-tooltip',
+  templateUrl: 'account-tooltip.pug',
 })
 export class AccountTooltip {
-	@Input() account!: Account;
-	@Input() extendedAuths = false;
-	get age() {
-		return this.account.birthdate ? getAge(this.account.birthdate) : '-';
-	}
-	get forceAge() {
-		return this.account.birthyear ? (year - this.account.birthyear) : '';
-	}
+  @Input() account!: Account;
+  @Input() extendedAuths = false;
+  get age() {
+    return this.account.birthdate ? getAge(this.account.birthdate) : '-';
+  }
+  get forceAge() {
+    return this.account.birthyear ? (year - this.account.birthyear) : '';
+  }
 }

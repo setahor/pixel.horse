@@ -2,55 +2,55 @@ import { argv } from 'yargs';
 import { ServerConfig } from '../common/adminInterfaces';
 
 export interface AppConfig {
-	title: string;
-	twitterLink?: string;
-	supporterLink?: string;
-	contactEmail?: string;
-	port: number;
-	adminPort?: number;
-	host: string;
-	proxy?: number;
-	noindex?: boolean;
-	secret: string;
-	token: string;
-	local: string;
-	adminLocal?: string;
-	sw?: boolean;
-	db: string;
-	pg: any;
-	rollbar?: {
-		environment: string;
-		clientToken: string;
-		serverToken: string;
-		gulpToken: string;
-	};
-	analytics?: {
-		trackingID: string;
-	};
-	assetsPath?: string;
-	oauth: { [key: string]: any };
-	servers: ServerConfig[];
-	facebookAppId?: string;
+  title: string;
+  twitterLink?: string;
+  supporterLink?: string;
+  contactEmail?: string;
+  port: number;
+  adminPort?: number;
+  host: string;
+  proxy?: number;
+  noindex?: boolean;
+  secret: string;
+  token: string;
+  local: string;
+  adminLocal?: string;
+  sw?: boolean;
+  db: string;
+  pg: any;
+  rollbar?: {
+    environment: string;
+    clientToken: string;
+    serverToken: string;
+    gulpToken: string;
+  };
+  analytics?: {
+    trackingID: string;
+  };
+  assetsPath?: string;
+  oauth: { [key: string]: any };
+  servers: ServerConfig[];
+  facebookAppId?: string;
 }
 
 export interface AppPackage {
-	name: string;
-	version: string;
-	description: string;
+  name: string;
+  version: string;
+  description: string;
 }
 
 export interface AppArgs {
-	port?: string;
-	login?: boolean;
-	admin?: boolean;
-	standaloneadmin?: boolean;
-	game?: string;
-	superadmin?: string;
-	users?: boolean;
-	tools?: boolean;
-	webpack?: boolean;
-	local?: boolean;
-	nocleanup?: boolean;
+  port?: string;
+  login?: boolean;
+  admin?: boolean;
+  standaloneadmin?: boolean;
+  game?: string;
+  superadmin?: string;
+  users?: boolean;
+  tools?: boolean;
+  webpack?: boolean;
+  local?: boolean;
+  nocleanup?: boolean;
 }
 
 export const args = argv as AppArgs;

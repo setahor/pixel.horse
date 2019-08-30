@@ -9,36 +9,36 @@ let setX = 0;
 let setY = 0;
 
 export function setupPlayer(game: PonyTownGame, player: Pony) {
-	const pony = player;
-	pony.flags = setFlag(pony.flags, EntityFlags.Interactive, false);
+  const pony = player;
+  pony.flags = setFlag(pony.flags, EntityFlags.Interactive, false);
 
-	if (isStaticCollision(player, game.map, false)) {
-		fixCollision(player, game.map);
-	}
+  if (isStaticCollision(player, game.map, false)) {
+    fixCollision(player, game.map);
+  }
 
-	game.setPlayer(pony);
-	currentPlayer = player;
-	savePlayerPosition();
+  game.setPlayer(pony);
+  currentPlayer = player;
+  savePlayerPosition();
 }
 
 export function savePlayerPosition() {
-	if (currentPlayer) {
-		setX = currentPlayer.x;
-		setY = currentPlayer.y;
-	}
+  if (currentPlayer) {
+    setX = currentPlayer.x;
+    setY = currentPlayer.y;
+  }
 }
 
 export function restorePlayerPosition() {
-	if (currentPlayer) {
-		if (currentPlayer.x !== setX || currentPlayer.y !== setY) {
-			currentPlayer.x = setX;
-			currentPlayer.y = setY;
-			DEVELOPMENT && console.warn('Restoring player position');
-		}
-	}
+  if (currentPlayer) {
+    if (currentPlayer.x !== setX || currentPlayer.y !== setY) {
+      currentPlayer.x = setX;
+      currentPlayer.y = setY;
+      DEVELOPMENT && console.warn('Restoring player position');
+    }
+  }
 }
 
 // Account creation lock
 export const setAclCookie = (acl: string) => {
-	document.cookie = `acl=${acl}; expires=${fromNow(WEEK).toUTCString()}; path=/`;
+  document.cookie = `acl=${acl}; expires=${fromNow(WEEK).toUTCString()}; path=/`;
 };

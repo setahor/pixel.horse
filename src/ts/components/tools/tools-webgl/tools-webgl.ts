@@ -26,15 +26,15 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 // } from '../../../generated/shaders';
 
 @Component({
-	selector: 'tools-webgl',
-	templateUrl: 'tools-webgl.pug',
+  selector: 'tools-webgl',
+  templateUrl: 'tools-webgl.pug',
 })
 export class ToolsWebgl implements OnInit {
-	@ViewChild('canvas', { static: true }) canvasElement!: ElementRef;
-	@ViewChild('canvas2', { static: true }) canvasElement2!: ElementRef;
-	ngOnInit() {
-		// testSpriteBatch(this.canvasElement.nativeElement);
-	}
+  @ViewChild('canvas', { static: true }) canvasElement!: ElementRef;
+  @ViewChild('canvas2', { static: true }) canvasElement2!: ElementRef;
+  ngOnInit() {
+    // testSpriteBatch(this.canvasElement.nativeElement);
+  }
 }
 
 // export function testLightsShader(canvas: HTMLCanvasElement) {

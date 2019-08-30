@@ -1,22 +1,22 @@
 interface HTMLCanvasElement {
-	toBuffer(callback: (err: any, buffer: Buffer) => void): void;
-	toBuffer(): Buffer;
+  toBuffer(callback: (err: any, buffer: Buffer) => void): void;
+  toBuffer(): Buffer;
 }
 
 interface NodeCanvasImage extends HTMLImageElement {
-	src: any;
+  src: any;
 }
 
 interface NodeCanvas extends HTMLCanvasElement {
-	new(width?: number, height?: number): NodeCanvas;
+  new(width?: number, height?: number): NodeCanvas;
 }
 
 interface NodeStaticImage {
-	new(width?: number, height?: number): NodeCanvasImage;
+  new(width?: number, height?: number): NodeCanvasImage;
 }
 
-declare module "canvas" {
-	export function createCanvas(width: number, height: number): HTMLCanvasElement;
-	export type Canvas = HTMLCanvasElement;
-	export const Image: NodeStaticImage;
+declare module 'canvas' {
+  export function createCanvas(width: number, height: number): HTMLCanvasElement;
+  export type Canvas = HTMLCanvasElement;
+  export const Image: NodeStaticImage;
 }

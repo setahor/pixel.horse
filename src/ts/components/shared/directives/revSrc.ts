@@ -2,11 +2,11 @@ import { Directive, Input, HostBinding } from '@angular/core';
 import { getUrl } from '../../../client/rev';
 
 @Directive({
-	selector: '[revSrc]',
+  selector: '[revSrc]',
 })
 export class RevSrc {
-	@HostBinding() get src() {
-		return this.revSrc && getUrl(this.revSrc);
-	}
-	@Input() revSrc?: string;
+  @HostBinding() get src() {
+    return this.revSrc && getUrl(this.revSrc);
+  }
+  @Input() revSrc?: string;
 }

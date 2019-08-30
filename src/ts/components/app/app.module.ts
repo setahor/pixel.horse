@@ -24,43 +24,43 @@ import { ErrorReporter } from '../services/errorReporter';
 import { RollbarErrorReporter } from '../services/rollbarErrorReporter';
 
 export const routes: Routes = [
-	{ path: '', component: Home },
-	{ path: 'help', component: Help },
-	{ path: 'about', component: About },
-	{ path: 'account', component: Account, canActivate: [AuthGuard] },
-	{ path: 'character', component: Character, canActivate: [AuthGuard] },
-	{ path: '**', redirectTo: '/', pathMatch: 'full' },
+  { path: '', component: Home },
+  { path: 'help', component: Help },
+  { path: 'about', component: About },
+  { path: 'account', component: Account, canActivate: [AuthGuard] },
+  { path: 'character', component: Character, canActivate: [AuthGuard] },
+  { path: '**', redirectTo: '/', pathMatch: 'full' },
 ];
 
 @NgModule({
-	imports: [
-		BrowserModule,
-		RouterModule,
-		FormsModule,
-		HttpClientModule,
-		PopoverModule.forRoot(),
-		ButtonsModule.forRoot(),
-		TooltipModule.forRoot(),
-		// TypeaheadModule.forRoot(),
-		SharedModule,
-		RouterModule.forRoot(routes),
-		FontAwesomeModule,
-	],
-	declarations: [
-		App,
-		Home,
-		Help,
-		About,
-		Account,
-		Character,
-		EditorBox,
-	],
-	providers: [
-		{ provide: RollbarService, useFactory: rollbarFactory },
-		{ provide: ErrorHandler, useClass: RollbarErrorHandler },
-		{ provide: ErrorReporter, useClass: RollbarErrorReporter },
-	],
-	bootstrap: [App],
+  imports: [
+    BrowserModule,
+    RouterModule,
+    FormsModule,
+    HttpClientModule,
+    PopoverModule.forRoot(),
+    ButtonsModule.forRoot(),
+    TooltipModule.forRoot(),
+    // TypeaheadModule.forRoot(),
+    SharedModule,
+    RouterModule.forRoot(routes),
+    FontAwesomeModule,
+  ],
+  declarations: [
+    App,
+    Home,
+    Help,
+    About,
+    Account,
+    Character,
+    EditorBox,
+  ],
+  providers: [
+    { provide: RollbarService, useFactory: rollbarFactory },
+    { provide: ErrorHandler, useClass: RollbarErrorHandler },
+    { provide: ErrorReporter, useClass: RollbarErrorReporter },
+  ],
+  bootstrap: [App],
 })
 export class AppModule {
 }

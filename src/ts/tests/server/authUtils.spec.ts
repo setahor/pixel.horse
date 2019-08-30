@@ -7,80 +7,80 @@ import { auth, genId } from '../mocks';
 import { Profile } from '../../common/interfaces';
 
 function profile(options: Partial<Profile>): Profile {
-	return options as Profile;
+  return options as Profile;
 }
 
 describe('authUtils', () => {
-	describe('updateAuthInfo()', () => {
-		it('updates url and name fields', async () => {
-			const updateAuth = stub();
-			const a = auth({ _id: 'bar' });
+  describe('updateAuthInfo()', () => {
+    it('updates url and name fields', async () => {
+      const updateAuth = stub();
+      const a = auth({ _id: 'bar' });
 
-			await updateAuthInfo(updateAuth, a, profile({ username: 'foo', url: 'bar' }), undefined);
+      await updateAuthInfo(updateAuth, a, profile({ username: 'foo', url: 'bar' }), undefined);
 
-			expect(a.name).eql('foo');
-			expect(a.url).eql('bar');
-			assert.calledWith(updateAuth, 'bar', { name: 'foo', url: 'bar' });
-		});
+      expect(a.name).eql('foo');
+      expect(a.url).eql('bar');
+      assert.calledWith(updateAuth, 'bar', { name: 'foo', url: 'bar' });
+    });
 
-		it('updates email field', async () => {
-			const a = auth({ emails: ['a'] });
+    it('updates email field', async () => {
+      const a = auth({ emails: ['a'] });
 
-			await updateAuthInfo(stub(), a, profile({ emails: ['b', 'c'] }), undefined);
+      await updateAuthInfo(stub(), a, profile({ emails: ['b', 'c'] }), undefined);
 
-			expect(a.emails).eql(['a', 'b', 'c']);
-		});
+      expect(a.emails).eql(['a', 'b', 'c']);
+    });
 
-		it('updates email field (from empty)', async () => {
-			const updateAuth = stub();
-			const a = auth({ _id: 'bar' });
+    it('updates email field (from empty)', async () => {
+      const updateAuth = stub();
+      const a = auth({ _id: 'bar' });
 
-			await updateAuthInfo(updateAuth, a, profile({ emails: ['b', 'c'] }), undefined);
+      await updateAuthInfo(updateAuth, a, profile({ emails: ['b', 'c'] }), undefined);
 
-			expect(a.emails).eql(['b', 'c']);
-			assert.calledWith(updateAuth, 'bar', { emails: ['b', 'c'] });
-		});
+      expect(a.emails).eql(['b', 'c']);
+      assert.calledWith(updateAuth, 'bar', { emails: ['b', 'c'] });
+    });
 
-		it('saves updated auth', async () => {
-			const updateAuth = stub();
+    it('saves updated auth', async () => {
+      const updateAuth = stub();
 
-			await updateAuthInfo(updateAuth, auth({ _id: 'bar' }), profile({ username: 'foo' }), undefined);
+      await updateAuthInfo(updateAuth, auth({ _id: 'bar' }), profile({ username: 'foo' }), undefined);
 
-			assert.calledWith(updateAuth, 'bar', { name: 'foo' });
-		});
+      assert.calledWith(updateAuth, 'bar', { name: 'foo' });
+    });
 
-		it('updates account if passed account ID', async () => {
-			const a = auth({});
-			const accountId = genId();
+    it('updates account if passed account ID', async () => {
+      const a = auth({});
+      const accountId = genId();
 
-			await updateAuthInfo(stub(), a, profile({ username: 'foo', url: 'bar' }), accountId);
+      await updateAuthInfo(stub(), a, profile({ username: 'foo', url: 'bar' }), accountId);
 
-			expect(a.account).eql(Types.ObjectId(accountId));
-		});
+      expect(a.account).eql(Types.ObjectId(accountId));
+    });
 
-		it('does not save auth if nothing changed', async () => {
-			const updateAuth = stub();
+    it('does not save auth if nothing changed', async () => {
+      const updateAuth = stub();
 
-			await updateAuthInfo(updateAuth, auth({ _id: 'bar', name: 'foo' }), profile({ username: 'foo' }), undefined);
+      await updateAuthInfo(updateAuth, auth({ _id: 'bar', name: 'foo' }), profile({ username: 'foo' }), undefined);
 
-			assert.notCalled(updateAuth);
-		});
+      assert.notCalled(updateAuth);
+    });
 
-		it('does nothing if email list is the same', async () => {
-			const updateAuth = stub();
-			const a = auth({ _id: 'bar', emails: ['a', 'b'] });
+    it('does nothing if email list is the same', async () => {
+      const updateAuth = stub();
+      const a = auth({ _id: 'bar', emails: ['a', 'b'] });
 
-			await updateAuthInfo(updateAuth, a, profile({ emails: ['b', 'a'] }), undefined);
+      await updateAuthInfo(updateAuth, a, profile({ emails: ['b', 'a'] }), undefined);
 
-			assert.notCalled(updateAuth);
-		});
+      assert.notCalled(updateAuth);
+    });
 
-		it('does nothing if auth is undefined', async () => {
-			const updateAuth = stub();
+    it('does nothing if auth is undefined', async () => {
+      const updateAuth = stub();
 
-			await updateAuthInfo(updateAuth, undefined, profile({}), undefined);
+      await updateAuthInfo(updateAuth, undefined, profile({}), undefined);
 
-			assert.notCalled(updateAuth);
-		});
-	});
+      assert.notCalled(updateAuth);
+    });
+  });
 });

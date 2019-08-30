@@ -16,63 +16,63 @@ const paletteManager = new PaletteManager();
 const defaultPalette = paletteManager.add(DEFAULT_PALETTE);
 
 @Component({
-	selector: 'tools-palette',
-	templateUrl: 'tools-palette.pug',
+  selector: 'tools-palette',
+  templateUrl: 'tools-palette.pug',
 })
 export class ToolsPalette implements OnInit {
-	readonly homeIcon = faHome;
-	@ViewChild('canvas', { static: true }) canvas!: ElementRef;
-	scale = 3;
-	sprites = Object.keys(sprites).filter(key => {
-		const s = (sprites as any)[key] as any;
-		return !!(s && s.color);
-	});
-	spriteName = '';
-	palette = ['red', 'blue', 'orange', 'violet'].map(x => ({ original: x, current: x }));
-	ngOnInit() {
-		setPaletteManager(paletteManager);
-		loadAndInitSpriteSheets().then(() => this.redraw());
-	}
-	spriteChanged() {
-		this.redraw();
-	}
-	loadPalette() {
-		const sprite = (sprites as any)[this.spriteName] as PaletteRenderable;
+  readonly homeIcon = faHome;
+  @ViewChild('canvas', { static: true }) canvas!: ElementRef;
+  scale = 3;
+  sprites = Object.keys(sprites).filter(key => {
+    const s = (sprites as any)[key] as any;
+    return !!(s && s.color);
+  });
+  spriteName = '';
+  palette = ['red', 'blue', 'orange', 'violet'].map(x => ({ original: x, current: x }));
+  ngOnInit() {
+    setPaletteManager(paletteManager);
+    loadAndInitSpriteSheets().then(() => this.redraw());
+  }
+  spriteChanged() {
+    this.redraw();
+  }
+  loadPalette() {
+    const sprite = (sprites as any)[this.spriteName] as PaletteRenderable;
 
-		if (sprite) {
-			this.palette = Array.from(sprite.palettes![0]).map(colorToCSS).map(c => ({ original: c, current: c }));
-		}
+    if (sprite) {
+      this.palette = Array.from(sprite.palettes![0]).map(colorToCSS).map(c => ({ original: c, current: c }));
+    }
 
-		this.redraw();
-	}
-	redraw() {
-		const canvas = this.canvas.nativeElement as HTMLCanvasElement;
-		const width = Math.ceil(canvas.width / this.scale);
-		const height = Math.ceil(canvas.height / this.scale);
+    this.redraw();
+  }
+  redraw() {
+    const canvas = this.canvas.nativeElement as HTMLCanvasElement;
+    const width = Math.ceil(canvas.width / this.scale);
+    const height = Math.ceil(canvas.height / this.scale);
 
-		const buffer = drawCanvas(width, height, sprites.paletteSpriteSheet, BG, batch => {
-			const sprite = (sprites as any)[this.spriteName] as PaletteRenderable;
+    const buffer = drawCanvas(width, height, sprites.paletteSpriteSheet, BG, batch => {
+      const sprite = (sprites as any)[this.spriteName] as PaletteRenderable;
 
-			if (sprite) {
-				const palette = paletteManager.add(this.palette.map(x => parseColor(x.current)));
+      if (sprite) {
+        const palette = paletteManager.add(this.palette.map(x => parseColor(x.current)));
 
-				const x = (width - (sprite.color!.w + sprite.color!.ox)) / 2;
-				const y = (height - (sprite.color!.h + sprite.color!.oy)) / 2;
+        const x = (width - (sprite.color!.w + sprite.color!.ox)) / 2;
+        const y = (height - (sprite.color!.h + sprite.color!.oy)) / 2;
 
-				console.log(x, y, width, sprite.color!.w, sprite.color!.ox);
+        console.log(x, y, width, sprite.color!.w, sprite.color!.ox);
 
-				batch.drawSprite(sprite.shadow, SHADOW_COLOR, defaultPalette, x, y);
-				batch.drawSprite(sprite.color, WHITE, palette, x, y);
+        batch.drawSprite(sprite.shadow, SHADOW_COLOR, defaultPalette, x, y);
+        batch.drawSprite(sprite.color, WHITE, palette, x, y);
 
-				releasePalette(palette);
-			}
-		});
+        releasePalette(palette);
+      }
+    });
 
-		const viewContext = canvas.getContext('2d')!;
-		viewContext.save();
-		disableImageSmoothing(viewContext);
-		viewContext.scale(this.scale, this.scale);
-		viewContext.drawImage(buffer, 0, 0);
-		viewContext.restore();
-	}
+    const viewContext = canvas.getContext('2d')!;
+    viewContext.save();
+    disableImageSmoothing(viewContext);
+    viewContext.scale(this.scale, this.scale);
+    viewContext.drawImage(buffer, 0, 0);
+    viewContext.restore();
+  }
 }
