@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+import * as path from 'path';
 import * as moment from 'moment';
 import { compact } from 'lodash';
 import { Request } from 'express';
@@ -188,6 +189,11 @@ export class StatsTracker {
 	}
 	startStatTracking() {
 		if (!fs.existsSync(this.statsPath)) {
+			try {
+				fs.mkdirSync(path.dirname(this.statsPath), { recursive: true });
+			} catch (e) {
+				if (e.code !== 'EEXIST') throw e;
+			}
 			fs.writeFileSync(this.statsPath, encodeCSV(statsHeaders), { encoding: 'utf8' });
 		}
 
