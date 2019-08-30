@@ -1,0 +1,8 @@
+node_modules/
+/src/scripts/
+/build/
+/build-copy/
+/logs/
+/settings/
+
+/config.json
