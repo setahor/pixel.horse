@@ -21,7 +21,9 @@ export interface OAuthProfile {
 	id?: string;
 	name?: OAuthProfileName;
 	username?: string;
+	discriminator?: string; // discord
 	displayName?: string;
+	email?: string; // discord
 	emails?: { value: string; }[];
 	provider: string;
 	gender?: string;
@@ -118,7 +120,9 @@ export function getProfileUrl(profile: OAuthProfile): string | undefined {
 }
 
 export function getProfileEmails(profile: OAuthProfile): string[] {
-	if (profile.emails && profile.emails.length) {
+	if (profile.provider === 'discord') {
+		return [profile.email as string];
+	} else if (profile.emails && profile.emails.length) {
 		return profile.emails.map(e => e.value);
 	} else if (profile._json && profile._json.attributes && profile._json.attributes.email) { // patreon
 		return [profile._json.attributes.email];
@@ -128,10 +132,12 @@ export function getProfileEmails(profile: OAuthProfile): string[] {
 }
 
 export function getProfileUsername(profile: OAuthProfile): string | undefined {
+	if (profile.provider === 'discord') return `${profile.username}#${profile.discriminator}`;
 	return profile.username || profile.displayName || getProfileNameInternal(profile.name);
 }
 
 export function getProfileName(profile: OAuthProfile): string | undefined {
+	if (profile.provider === 'discord') return `${profile.username}#${profile.discriminator}`;
 	return profile.displayName || profile.username || getProfileNameInternal(profile.name);
 }
 
