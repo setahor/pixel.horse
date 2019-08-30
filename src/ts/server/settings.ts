@@ -25,7 +25,7 @@ export async function loadSettings() {
 				if (e2.code !== 'EEXIST') throw e;
 			}
 		} else {
-			console.error('Error reading settings file: ' + e);
+			throw e;
 		}
 
 		return cloneDeep(defaultSettings);
