@@ -107,6 +107,21 @@ Get OAuth keys for authentication platform of your choice (github, google, twitt
 },
 ```
 
+### Discord
+
+- Go to https://discordapp.com/developers/applications/ and create a new app
+- Navigate to the OAuth2 tab
+- Add `http://<your domain>/auth/discord/callback` (or `http://localhost:8090/auth/vkontakte/callback` for your localhost server) as a redirect URI
+- Navigate back to the General Information tab
+- Add this to the `oauth` field in your `config.json`
+
+```json
+"discord": {
+  "clientID": "<your_client_id>",
+  "clientSecret": "<your_client_secret>"
+},
+```
+
 ### Other
 
 If you want to add other sign-in methods you need to find appropriate [passport](http://www.passportjs.org/) package and add it in `src/ts/server/oauth.ts` and add correct entry in `config.json`.
