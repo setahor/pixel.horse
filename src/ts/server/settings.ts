@@ -22,7 +22,7 @@ export async function loadSettings() {
 			try {
 				await mkdirAsync(paths.pathTo('settings'));
 			} catch (e2) {
-				if (e2.code !== 'EEXIST') console.error('Failed to create settings directory: ' + e2);
+				if (e2.code !== 'EEXIST') throw e;
 			}
 		} else {
 			console.error('Error reading settings file: ' + e);
