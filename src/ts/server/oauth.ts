@@ -8,6 +8,7 @@ import { Strategy as FacebookStrategy } from '@passport-next/passport-facebook';
 import { Strategy as GithubStrategy } from 'passport-github2';
 import { Strategy as VKontakteStrategy } from 'passport-vkontakte';
 import { Strategy as PatreonStrategy } from 'passport-patreon';
+import { Strategy as DiscordStrategy } from 'passport-discord';
 import { Profile } from '../common/interfaces';
 import { PATREON_COLOR } from '../common/colors';
 import { colorToCSS } from '../common/color';
@@ -87,6 +88,12 @@ const providerList: OAuthProviderInfo[] = [
 		color: colorToCSS(PATREON_COLOR),
 		strategy: PatreonStrategy,
 	},
+	{
+		id: 'discord',
+		name: 'Discord',
+		color: '#7289DA',
+		strategy: DiscordStrategy,
+	},
 ];
 
 providerList.forEach(p => p.auth = config.oauth[p.id]);
@@ -101,6 +108,8 @@ export function getProfileUrl(profile: OAuthProfile): string | undefined {
 		return `http://${profile.username}.tumblr.com/`;
 	} else if (profile.provider === 'facebook') {
 		return `http://www.facebook.com/${profile.id}`;
+	} else if (profile.provider === 'discord') {
+		return undefined;
 	} else if (profile._json.attributes && profile._json.attributes.url) { // patreon
 		return profile._json.attributes.url;
 	} else {
