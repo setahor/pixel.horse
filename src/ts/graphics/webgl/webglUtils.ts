@@ -18,9 +18,9 @@ export function getWebGLContext(canvas: HTMLCanvasElement): WebGLRenderingContex
 		antialias: false,
 	};
 
-	const gl = canvas.getContext('webgl2', options)
+	const gl = (canvas.getContext('webgl2', options)
 		|| canvas.getContext('webgl', options)
-		|| canvas.getContext('experimental-webgl', options);
+		|| canvas.getContext('experimental-webgl', options)) as WebGLRenderingContext;
 
 	if (!gl) {
 		throw new Error(WEBGL_CREATION_ERROR);

@@ -565,7 +565,7 @@ export class PonyTownGame implements Game {
 					this.drawOptions.tileGrid = !this.drawOptions.tileGrid;
 				});
 				addDebugShortcut(7, 'grayscale', () => {
-					document.documentElement.style.filter = document.documentElement.style.filter ? null : 'grayscale(100%)';
+					document.documentElement.style.filter = document.documentElement.style.filter ? '' : 'grayscale(100%)';
 				});
 				addDebugShortcut(8, 'show regions', () => {
 					this.debug.showRegions = !this.debug.showRegions;
