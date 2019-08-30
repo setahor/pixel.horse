@@ -42,7 +42,7 @@ export const MAX_CHATLOG_RANGE = 11;
 export const MIN_CHATLOG_RANGE = 2;
 
 export function isChatlogRangeUnlimited(range: number | undefined) {
-  return !range || range < MIN_CHATLOG_RANGE || range >= MAX_CHATLOG_RANGE;
+	return !range || range < MIN_CHATLOG_RANGE || range >= MAX_CHATLOG_RANGE;
 }
 
 export const WATER_FPS = 6;
@@ -108,30 +108,30 @@ export const MIN_ADULT_AGE = 18;
 export const REQUEST_DATE_OF_BIRTH = true;
 
 export const TIMEOUTS = [
-  { value: MINUTE * 5, label: '5 minutes' },
-  { value: MINUTE * 10, label: '10 minutes' },
-  { value: MINUTE * 30, label: '30 minutes' },
-  { value: HOUR * 1, label: '1 hour' },
-  { value: HOUR * 5, label: '5 hours' },
-  { value: HOUR * 10, label: '10 hours' },
-  { value: HOUR * 24, label: '24 hours' },
-  { value: DAY * 2, label: '2 days' },
-  { value: DAY * 5, label: '5 days' },
+	{ value: MINUTE * 5, label: '5 minutes' },
+	{ value: MINUTE * 10, label: '10 minutes' },
+	{ value: MINUTE * 30, label: '30 minutes' },
+	{ value: HOUR * 1, label: '1 hour' },
+	{ value: HOUR * 5, label: '5 hours' },
+	{ value: HOUR * 10, label: '10 hours' },
+	{ value: HOUR * 24, label: '24 hours' },
+	{ value: DAY * 2, label: '2 days' },
+	{ value: DAY * 5, label: '5 days' },
 ];
 
 export const MONTH_NAMES_EN = [
-  'January',
-  'February ',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
+	'January',
+	'February ',
+	'March',
+	'April',
+	'May',
+	'June',
+	'July',
+	'August',
+	'September',
+	'October',
+	'November',
+	'December',
 ];
 
 export const OFFLINE_PONY = 'DAKVlZUvLy82QIxomgCfgAYAGIAoQGEBwAEERFEUEA==';
@@ -143,48 +143,48 @@ export const rewardLevel2 = '2411886';
 export const rewardLevel3 = '2411888';
 
 const SUPPORTER_REWARDS_COMMON = [
-  `In-game supporter tag`,
-  `Supporter chat color`,
+	`In-game supporter tag`,
+	`Supporter chat color`,
 ];
 
 const SUPPORTER_REWARDS_MORE = [
-  `Access to patreon posts`,
-  `Early access to new and experimental features`,
+	`Access to patreon posts`,
+	`Early access to new and experimental features`,
 ];
 
 export const SUPPORTER_REWARDS = [
-  [],
-  [
-    ...SUPPORTER_REWARDS_COMMON,
-    `${ADDITIONAL_CHARACTERS_SUPPORTER1} additional slots for saving ponies`,
-  ],
-  [
-    ...SUPPORTER_REWARDS_COMMON,
-    ...SUPPORTER_REWARDS_MORE,
-    `${ADDITIONAL_CHARACTERS_SUPPORTER2} additional slots for saving ponies`,
-  ],
-  [
-    ...SUPPORTER_REWARDS_COMMON,
-    ...SUPPORTER_REWARDS_MORE,
-    `${ADDITIONAL_CHARACTERS_SUPPORTER3} additional slots for saving ponies`,
-  ],
+	[],
+	[
+		...SUPPORTER_REWARDS_COMMON,
+		`${ADDITIONAL_CHARACTERS_SUPPORTER1} additional slots for saving ponies`,
+	],
+	[
+		...SUPPORTER_REWARDS_COMMON,
+		...SUPPORTER_REWARDS_MORE,
+		`${ADDITIONAL_CHARACTERS_SUPPORTER2} additional slots for saving ponies`,
+	],
+	[
+		...SUPPORTER_REWARDS_COMMON,
+		...SUPPORTER_REWARDS_MORE,
+		`${ADDITIONAL_CHARACTERS_SUPPORTER3} additional slots for saving ponies`,
+	],
 ];
 
 export const SUPPORTER_REWARDS_LIST = [
-  ...SUPPORTER_REWARDS_COMMON,
-  ...SUPPORTER_REWARDS_MORE,
-  `Additional slots for saving ponies`,
+	...SUPPORTER_REWARDS_COMMON,
+	...SUPPORTER_REWARDS_MORE,
+	`Additional slots for saving ponies`,
 ];
 
 export const PAST_SUPPORTER_REWARDS = [
-  `${ADDITIONAL_CHARACTERS_PAST_SUPPORTER} additional slots for saving ponies`,
+	`${ADDITIONAL_CHARACTERS_PAST_SUPPORTER} additional slots for saving ponies`,
 ];
 
 export const GENERAL_RULES = [
-  `Be kind to others`,
-  `Don't spam`,
-  `Don't use multiple accounts`,
-  `Don't modify the game with hacks or scripts`,
-  `Don't encourage behaviour violating the rules`,
-  `Violation of the rules may result in temporary or permanent ban`,
+	`Be kind to others`,
+	`Don't spam`,
+	`Don't use multiple accounts`,
+	`Don't modify the game with hacks or scripts`,
+	`Don't encourage behaviour violating the rules`,
+	`Violation of the rules may result in temporary or permanent ban`,
 ];

@@ -1,6 +1,6 @@
 interface Point {
-  x: number;
-  y: number;
+	x: number;
+	y: number;
 }
 
 type Pt = [number, number];
@@ -20,19 +20,19 @@ export const waistAccessoryOffsets: Point[] = [];
 export const chestAccessoryOffsets: Point[] = [];
 
 function offsets(
-  _index: number, cm: Pt, head: Pt, tail: Pt, wing: Pt, frontLeg: Pt, backLeg: Pt,
-  neckAccessory: Pt, backAccessory: Pt, waistAccessory: Pt, chestAccessory: Pt
+	_index: number, cm: Pt, head: Pt, tail: Pt, wing: Pt, frontLeg: Pt, backLeg: Pt,
+	neckAccessory: Pt, backAccessory: Pt, waistAccessory: Pt, chestAccessory: Pt
 ) {
-  cmOffsets.push(createPoint(cm));
-  headOffsets.push(createPoint(head));
-  tailOffsets.push(createPoint(tail));
-  wingOffsets.push(createPoint(wing));
-  frontLegOffsets.push(createPoint(frontLeg));
-  backLegOffsets.push(createPoint(backLeg));
-  neckAccessoryOffsets.push(createPoint(neckAccessory));
-  backAccessoryOffsets.push(createPoint(backAccessory));
-  waistAccessoryOffsets.push(createPoint(waistAccessory));
-  chestAccessoryOffsets.push(createPoint(chestAccessory));
+	cmOffsets.push(createPoint(cm));
+	headOffsets.push(createPoint(head));
+	tailOffsets.push(createPoint(tail));
+	wingOffsets.push(createPoint(wing));
+	frontLegOffsets.push(createPoint(frontLeg));
+	backLegOffsets.push(createPoint(backLeg));
+	neckAccessoryOffsets.push(createPoint(neckAccessory));
+	backAccessoryOffsets.push(createPoint(backAccessory));
+	waistAccessoryOffsets.push(createPoint(waistAccessory));
+	chestAccessoryOffsets.push(createPoint(chestAccessory));
 }
 
 // stand:   cm      head    tail    wing  frontLeg backLeg       neck    back    waist   chest
@@ -59,80 +59,80 @@ offsets(15, [8, 11], [7, 11], [9, 14], [7, 11], [6, 9], [8, 11], /***/[7, 11], [
 offsets(16, [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], /***/[0, 0], [0, 0], [0, 0], [0, 0]);
 
 export const EAR_ACCESSORY_OFFSETS = createPoints([
-  [0, 0], // 0
-  [0, 0],
-  [0, 0],
-  [0, 0],
-  [0, 0],
-  [0, 0], // 5
+	[0, 0], // 0
+	[0, 0],
+	[0, 0],
+	[0, 0],
+	[0, 0],
+	[0, 0], // 5
 ]);
 
 export const EXTRA_ACCESSORY_OFFSETS = createPoints([
-  [0, 9], // 0
-  [0, 0],
-  [0, 0],
-  [0, 1],
-  [0, 2],
-  [0, 2], // 5
-  [0, 1],
-  [0, 1],
-  [0, 2],
-  [0, 3],
-  [0, 2], // 10
-  [0, 2],
-  [0, 3],
-  [0, 1],
-  [0, 1],
-  [0, 1], // 15
-  [0, 9],
-  [0, 3],
-  [0, 3],
-  [0, 3],
-  [0, 3], // 20
-  [0, 3],
-  [0, 2],
-  [0, 3],
-  [0, 3],
-  [0, 3], // 25
-  [0, 2],
-  [0, 3],
-  [-1, 3],
-  [0, 3],
-  [0, 3], // 30
-  [0, 3],
+	[0, 9], // 0
+	[0, 0],
+	[0, 0],
+	[0, 1],
+	[0, 2],
+	[0, 2], // 5
+	[0, 1],
+	[0, 1],
+	[0, 2],
+	[0, 3],
+	[0, 2], // 10
+	[0, 2],
+	[0, 3],
+	[0, 1],
+	[0, 1],
+	[0, 1], // 15
+	[0, 9],
+	[0, 3],
+	[0, 3],
+	[0, 3],
+	[0, 3], // 20
+	[0, 3],
+	[0, 2],
+	[0, 3],
+	[0, 3],
+	[0, 3], // 25
+	[0, 2],
+	[0, 3],
+	[-1, 3],
+	[0, 3],
+	[0, 3], // 30
+	[0, 3],
 ]);
 
 export const HEAD_ACCESSORY_OFFSETS = createPoints([
-  [0, 0], // 0
-  [0, -5],
-  [0, -5],
-  [0, -4],
-  [0, -4],
-  [0, -4], // 5
-  [0, -4],
-  [1, -4],
-  [0, -4],
-  [0, -3],
-  [0, -4], // 10
-  [0, -4],
-  [0, -3],
-  [1, -5],
-  [0, -4],
-  [0, -4], // 15
-  [0, 0],
-  [0, -4],
-  [0, -4],
-  [0, -4],
-  [0, -4], // 20
-  [0, -4],
-  [0, -5],
-  [0, -5],
-  [0, -4],
-  [1, -3], // 25
-  [0, -4],
-  [0, -4],
-  [0, -4],
-  [0, -4],
-  [0, -4], // 30
-  [0, -3],
+	[0, 0], // 0
+	[0, -5],
+	[0, -5],
+	[0, -4],
+	[0, -4],
+	[0, -4], // 5
+	[0, -4],
+	[1, -4],
+	[0, -4],
+	[0, -3],
+	[0, -4], // 10
+	[0, -4],
+	[0, -3],
+	[1, -5],
+	[0, -4],
+	[0, -4], // 15
+	[0, 0],
+	[0, -4],
+	[0, -4],
+	[0, -4],
+	[0, -4], // 20
+	[0, -4],
+	[0, -5],
+	[0, -5],
+	[0, -4],
+	[1, -3], // 25
+	[0, -4],
+	[0, -4],
+	[0, -4],
+	[0, -4],
+	[0, -4], // 30
+	[0, -3],
 ]);

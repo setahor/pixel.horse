@@ -9,36 +9,36 @@ import { ServerEntity } from '../serverInterfaces';
 import { setEntityName } from '../entityUtils';
 
 export function createPaletteMap(world: World) {
-  const map = createServerMap('palette', MapType.None, 10, 10, TileType.Grass);
+	const map = createServerMap('palette', MapType.None, 10, 10, TileType.Grass);
 
-  map.spawnArea = rect(map.width / 2, map.height / 2, 0, 0);
+	map.spawnArea = rect(map.width / 2, map.height / 2, 0, 0);
 
-  function add(entity: ServerEntity) {
-    world.addEntity(entity, map);
-  }
+	function add(entity: ServerEntity) {
+		world.addEntity(entity, map);
+	}
 
-  add(createSign(map.width / 2, map.height / 2, 'Go back', (_, client) => goToMap(world, client, '', 'center')));
+	add(createSign(map.width / 2, map.height / 2, 'Go back', (_, client) => goToMap(world, client, '', 'center')));
 
-  const pad = 5;
-  let x = pad;
-  let y = pad;
+	const pad = 5;
+	let x = pad;
+	let y = pad;
 
-  for (const name of allEntities) {
-    const entityOrEntities = (entities as any)[name](x, y);
-    const ents = Array.isArray(entityOrEntities) ? entityOrEntities : [entityOrEntities];
+	for (const name of allEntities) {
+		const entityOrEntities = (entities as any)[name](x, y);
+		const ents = Array.isArray(entityOrEntities) ? entityOrEntities : [entityOrEntities];
 
-    for (const entity of ents) {
-      add(entity);
-      setEntityName(entity, name);
-    }
+		for (const entity of ents) {
+			add(entity);
+			setEntityName(entity, name);
+		}
 
-    x += 3;
+		x += 3;
 
-    if (x > (map.width - pad)) {
-      x = pad;
-      y += 3;
-    }
-  }
+		if (x > (map.width - pad)) {
+			x = pad;
+			y += 3;
+		}
+	}
 
-  return map;
+	return map;
 }

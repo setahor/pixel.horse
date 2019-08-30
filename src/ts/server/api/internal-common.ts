@@ -1,4 +1,4 @@
 export const createReloadSettings =
-  (reloadSettings: () => Promise<void>) =>
-    async () =>
-      await reloadSettings();
+	(reloadSettings: () => Promise<void>) =>
+		async () =>
+			await reloadSettings();

@@ -1,13 +1,13 @@
 import { animatorState as state, animatorTransition as transition, anyState, AnimatorState } from '../common/animator';
 import {
-  stand, sit, sitDown, standUp, lie, lieDown, sitUp, flyBug, fly, flyUp, flyDown, flyUpBug, flyDownBug,
-  trot, boop, boopSit, swim, sitToTrot, lieToTrot, boopLie, trotToFly, trotToFlyBug, boopFly, boopFlyBug,
-  flyToTrot, flyToTrotBug, swing, swimToTrot, trotToSwim, swimToFly, flyToSwim, boopSwim, swimToFlyBug, flyToSwimBug
+	stand, sit, sitDown, standUp, lie, lieDown, sitUp, flyBug, fly, flyUp, flyDown, flyUpBug, flyDownBug,
+	trot, boop, boopSit, swim, sitToTrot, lieToTrot, boopLie, trotToFly, trotToFlyBug, boopFly, boopFlyBug,
+	flyToTrot, flyToTrotBug, swing, swimToTrot, trotToSwim, swimToFly, flyToSwim, boopSwim, swimToFlyBug, flyToSwimBug
 } from './ponyAnimations';
 import { BodyAnimation } from '../common/interfaces';
 
 function n(value: string) {
-  return (DEVELOPMENT || SERVER) ? value : '';
+	return (DEVELOPMENT || SERVER) ? value : '';
 }
 
 export const standing = state(n('standing'), stand);
@@ -46,12 +46,12 @@ export const flyingToTrotting = state(n('flying-to-trotting'), flyToTrot, { bug:
 export const swinging = state(n('swinging'), swing);
 
 export const ponyStates = [
-  anyState, standing, trotting, swimming, swimmingToTrotting, trottingToSwimming,
-  booping, boopingSitting, boopingLying, boopingFlying,
-  sitting, sittingDown, standingUp, sittingToTrotting,
-  lying, lyingDown, sittingUp, lyingToTrotting,
-  hovering, flying, flyingUp, flyingDown, trottingToFlying, flyingToTrotting,
-  swinging, swimmingToFlying, flyingToSwimming, boopingSwimming,
+	anyState, standing, trotting, swimming, swimmingToTrotting, trottingToSwimming,
+	booping, boopingSitting, boopingLying, boopingFlying,
+	sitting, sittingDown, standingUp, sittingToTrotting,
+	lying, lyingDown, sittingUp, lyingToTrotting,
+	hovering, flying, flyingUp, flyingDown, trottingToFlying, flyingToTrotting,
+	swinging, swimmingToFlying, flyingToSwimming, boopingSwimming,
 ];
 
 transition(hovering, flyingDown, { exitAfter: 0 });
@@ -120,36 +120,36 @@ transition(standing, swinging, { exitAfter: 0 });
 transition(swinging, standing);
 
 export function isFlyingUp(state: AnimatorState<BodyAnimation> | undefined) {
-  return state === flyingUp || state === trottingToFlying || state === swimmingToFlying;
+	return state === flyingUp || state === trottingToFlying || state === swimmingToFlying;
 }
 
 export function isFlyingDown(state: AnimatorState<BodyAnimation> | undefined) {
-  return state === flyingDown || state === flyingToTrotting || state === flyingToSwimming;
+	return state === flyingDown || state === flyingToTrotting || state === flyingToSwimming;
 }
 
 export function isSwimmingState(state: AnimatorState<BodyAnimation> | undefined) {
-  return state === swimming || state === trottingToSwimming || state === swimmingToTrotting ||
-    state === flyingToSwimming || state === swimmingToFlying || state === boopingSwimming;
+	return state === swimming || state === trottingToSwimming || state === swimmingToTrotting ||
+		state === flyingToSwimming || state === swimmingToFlying || state === boopingSwimming;
 }
 
 export function isFlyingUpOrDown(state: AnimatorState<BodyAnimation> | undefined) {
-  return isFlyingUp(state) || isFlyingDown(state);
+	return isFlyingUp(state) || isFlyingDown(state);
 }
 
 export function isSittingDown(state: AnimatorState<BodyAnimation> | undefined) {
-  return state === sittingDown;
+	return state === sittingDown;
 }
 export function isSittingUp(state: AnimatorState<BodyAnimation> | undefined) {
-  return state === sittingUp;
+	return state === sittingUp;
 }
 
 export function toBoopState(state: AnimatorState<BodyAnimation>) {
-  switch (state) {
-    case standing: return booping;
-    case sitting: return boopingSitting;
-    case lying: return boopingLying;
-    case hovering: return boopingFlying;
-    case swimming: return boopingSwimming;
-    default: return undefined;
-  }
+	switch (state) {
+		case standing: return booping;
+		case sitting: return boopingSitting;
+		case lying: return boopingLying;
+		case hovering: return boopingFlying;
+		case swimming: return boopingSwimming;
+		default: return undefined;
+	}
 }

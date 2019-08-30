@@ -19,87 +19,87 @@ import { createSign } from './controllerUtils';
 import { signQuestion } from '../common/entities';
 
 export function start(world: World, server: ServerConfig) {
-  const data = readFileSync(pathTo('src', 'ts', 'generated', 'pony.bin'));
+	const data = readFileSync(pathTo('src', 'ts', 'generated', 'pony.bin'));
 
-  normalSpriteSheet.data = {
-    width: 512,
-    height: 512,
-    data: new Uint8ClampedArray(data.buffer, data.byteOffset, data.byteLength),
-  };
+	normalSpriteSheet.data = {
+		width: 512,
+		height: 512,
+		data: new Uint8ClampedArray(data.buffer, data.byteOffset, data.byteLength),
+	};
 
-  initializeTileHeightmaps();
+	initializeTileHeightmaps();
 
-  world.maps.push(createMainMap(world));
-  world.maps.push(createCaveMap(world));
+	world.maps.push(createMainMap(world));
+	world.maps.push(createCaveMap(world));
 
-  // custom map
-  if (DEVELOPMENT) { // remove `if` when you're ready to publish your map
-    // place sign that will teleport the player to your custom map
-    world.addEntity(createSign(
-      75, 69, 'Go to custom map', (_, client) => goToMap(world, client, 'custom'), signQuestion), world.getMainMap());
+	// custom map
+	if (DEVELOPMENT) { // remove `if` when you're ready to publish your map
+		// place sign that will teleport the player to your custom map
+		world.addEntity(createSign(
+			75, 69, 'Go to custom map', (_, client) => goToMap(world, client, 'custom'), signQuestion), world.getMainMap());
 
-    // add map to the world, go to `/src/ts/server/maps/customMap.ts` to customize your map
-    world.maps.push(createCustomMap(world));
-  }
+		// add map to the world, go to `/src/ts/server/maps/customMap.ts` to customize your map
+		world.maps.push(createCustomMap(world));
+	}
 
-  if (world.featureFlags.test) {
-    const island = createIslandMap(world, false);
-    island.id = 'public-island';
-    world.maps.push(island);
+	if (world.featureFlags.test) {
+		const island = createIslandMap(world, false);
+		island.id = 'public-island';
+		world.maps.push(island);
 
-    const house = createHouseMap(world, false);
-    house.id = 'public-house';
-    world.maps.push(house);
-  }
+		const house = createHouseMap(world, false);
+		house.id = 'public-house';
+		world.maps.push(house);
+	}
 
-  if (BETA) {
-    world.maps.push(createPaletteMap(world));
-  }
+	if (BETA) {
+		world.maps.push(createPaletteMap(world));
+	}
 
-  if (DEVELOPMENT) {
-    world.controllers.push(new ctrl.TestController(world, world.getMainMap()));
+	if (DEVELOPMENT) {
+		world.controllers.push(new ctrl.TestController(world, world.getMainMap()));
 
-    // world.controllers.push(new ctrl.PerfController(world, {
-    // 	count: 2000, moving: 1000, unique: true, spread: false, saying: false, x: 20, y: 20
-    // }));
+		// world.controllers.push(new ctrl.PerfController(world, {
+		// 	count: 2000, moving: 1000, unique: true, spread: false, saying: false, x: 20, y: 20
+		// }));
 
-    // world.controllers.push(new ctrl.FakeClientsController(world, server, {
-    // 	count: 1000,
-    // }));
+		// world.controllers.push(new ctrl.FakeClientsController(world, server, {
+		// 	count: 1000,
+		// }));
 
-    world.setTime(12);
-  }
+		world.setTime(12);
+	}
 
-  let last = Date.now();
-  let frames = 0;
+	let last = Date.now();
+	let frames = 0;
 
-  world.initialize(last);
+	world.initialize(last);
 
-  if (!DEVELOPMENT) {
-    create(server).info(`Server started`);
-  }
+	if (!DEVELOPMENT) {
+		create(server).info(`Server started`);
+	}
 
-  setInterval(() => {
-    timingReset();
-    timingStart('frame');
+	setInterval(() => {
+		timingReset();
+		timingStart('frame');
 
-    try {
-      const now = Date.now();
-      world.update(now - last, now);
-      last = now;
-      frames++;
+		try {
+			const now = Date.now();
+			world.update(now - last, now);
+			last = now;
+			frames++;
 
-      if (frames >= SERVER_FPS) {
-        frames = 0;
-        world.sparseUpdate(now);
-      }
-    } catch (e) {
-      create(server).danger(e.message);
-      logger.error(e);
-    }
+			if (frames >= SERVER_FPS) {
+				frames = 0;
+				world.sparseUpdate(now);
+			}
+		} catch (e) {
+			create(server).danger(e.message);
+			logger.error(e);
+		}
 
-    timingEnd();
-  }, 1000 / SERVER_FPS);
+		timingEnd();
+	}, 1000 / SERVER_FPS);
 
-  return world;
+	return world;
 }

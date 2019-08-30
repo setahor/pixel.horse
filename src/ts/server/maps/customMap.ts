@@ -15,28 +15,28 @@ import { pathTo } from '../paths';
 const mapData = JSON.parse(fs.readFileSync(pathTo('src', 'maps', 'custom.json'), 'utf8'));
 
 export function createCustomMap(world: World) {
-  // size: 4 by 4 regions -> 32 by 32 tiles
-  // default tiles: grass
-  const map = createServerMap('custom', MapType.None, 4, 4, TileType.Grass);
+	// size: 4 by 4 regions -> 32 by 32 tiles
+	// default tiles: grass
+	const map = createServerMap('custom', MapType.None, 4, 4, TileType.Grass);
 
-  // initialize tiles
-  deserializeMap(map, mapData);
+	// initialize tiles
+	deserializeMap(map, mapData);
 
-  // place default spawn point at the center of the map
-  map.spawnArea = rect(map.width / 2, map.height / 2, 0, 0);
+	// place default spawn point at the center of the map
+	map.spawnArea = rect(map.width / 2, map.height / 2, 0, 0);
 
-  // shorthand for adding entities
-  function add(entity: ServerEntity) {
-    world.addEntity(entity, map);
-  }
+	// shorthand for adding entities
+	function add(entity: ServerEntity) {
+		world.addEntity(entity, map);
+	}
 
-  // place return sign 2 tiles north of center of the map
-  add(createSign(map.width / 2, map.height / 2 - 2, 'Go back', (_, client) => goToMap(world, client, '', 'center')));
+	// place return sign 2 tiles north of center of the map
+	add(createSign(map.width / 2, map.height / 2 - 2, 'Go back', (_, client) => goToMap(world, client, '', 'center')));
 
-  // place barrel at 5, 5 location
-  add(entities.barrel(5, 5));
+	// place barrel at 5, 5 location
+	add(entities.barrel(5, 5));
 
-  // place more entities here ...
+	// place more entities here ...
 
-  return map;
+	return map;
 }

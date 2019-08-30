@@ -65,109 +65,109 @@ export const ENTITY_ITEM_BG = '#dc76bc';
 export const MAGIC_ALPHA = 150;
 
 export function updateActionColor(color: string) {
-  if (DEVELOPMENT) {
-    ACTION_EXPRESSION_BG = color;
-  }
+	if (DEVELOPMENT) {
+		ACTION_EXPRESSION_BG = color;
+	}
 }
 
 // utils
 
 export function getMessageColor(type: MessageType): number {
-  switch (type) {
-    case MessageType.Chat: return WHITE;
-    case MessageType.System: return SYSTEM_COLOR;
-    case MessageType.Admin: return ADMIN_COLOR;
-    case MessageType.Mod: return MOD_COLOR;
-    case MessageType.Party: return PARTY_COLOR;
-    case MessageType.Thinking: return THINKING_COLOR;
-    case MessageType.PartyThinking: return PARTY_THINKING_COLOR;
-    case MessageType.Supporter1: return SUPPORTER1_COLOR;
-    case MessageType.Supporter2: return SUPPORTER2_COLOR;
-    case MessageType.Supporter3: return SUPPORTER3_COLOR;
-    case MessageType.Whisper:
-    case MessageType.WhisperTo:
-      return WHISPER_COLOR;
-    case MessageType.Announcement:
-    case MessageType.PartyAnnouncement:
-    case MessageType.WhisperAnnouncement:
-    case MessageType.WhisperToAnnouncement:
-      return ANNOUNCEMENT_COLOR;
-    case MessageType.Dismiss: return TRANSPARENT;
-    default:
-      return invalidEnumReturn(type, WHITE);
-  }
+	switch (type) {
+		case MessageType.Chat: return WHITE;
+		case MessageType.System: return SYSTEM_COLOR;
+		case MessageType.Admin: return ADMIN_COLOR;
+		case MessageType.Mod: return MOD_COLOR;
+		case MessageType.Party: return PARTY_COLOR;
+		case MessageType.Thinking: return THINKING_COLOR;
+		case MessageType.PartyThinking: return PARTY_THINKING_COLOR;
+		case MessageType.Supporter1: return SUPPORTER1_COLOR;
+		case MessageType.Supporter2: return SUPPORTER2_COLOR;
+		case MessageType.Supporter3: return SUPPORTER3_COLOR;
+		case MessageType.Whisper:
+		case MessageType.WhisperTo:
+			return WHISPER_COLOR;
+		case MessageType.Announcement:
+		case MessageType.PartyAnnouncement:
+		case MessageType.WhisperAnnouncement:
+		case MessageType.WhisperToAnnouncement:
+			return ANNOUNCEMENT_COLOR;
+		case MessageType.Dismiss: return TRANSPARENT;
+		default:
+			return invalidEnumReturn(type, WHITE);
+	}
 }
 
 export function fillToOutline(color: string | undefined): string | undefined {
-  return color ? colorToHexRGB(fillToOutlineColor(parseColorFast(color))) : undefined;
+	return color ? colorToHexRGB(fillToOutlineColor(parseColorFast(color))) : undefined;
 }
 
 export function fillToOutlineWithDarken(color: string | undefined): string | undefined {
-  return color ? colorToHexRGB(darkenForOutline(fillToOutlineColor(parseColorFast(color)))) : undefined;
+	return color ? colorToHexRGB(darkenForOutline(fillToOutlineColor(parseColorFast(color)))) : undefined;
 }
 
 export function fillToOutlineColor(color: number): number {
-  const { h, s, v, a } = colorToHSVA(color);
-  return colorFromHSVA(h, Math.min(s * 1.3, 1), v * 0.7, a);
+	const { h, s, v, a } = colorToHSVA(color);
+	return colorFromHSVA(h, Math.min(s * 1.3, 1), v * 0.7, a);
 }
 
 const LIGHT_BLUSH = 0xff89aeff;
 const DARK_BLUSH = 0xc90040ff;
 
 export function blushColor(coat: number): number {
-  const { h, s, v } = colorToHSVA(coat);
+	const { h, s, v } = colorToHSVA(coat);
 
-  if (
-    (h < 15 && s > 0.2 && s < 0.7 && v > 0.85) ||
-    (h > 15 && h < 50 && s > 0.2 && v > 0.85) ||
-    (h > 280 && s > 0.2 && s < 0.7 && v > 0.85)
-  ) {
-    return DARK_BLUSH;
-  } else {
-    return LIGHT_BLUSH;
-  }
+	if (
+		(h < 15 && s > 0.2 && s < 0.7 && v > 0.85) ||
+		(h > 15 && h < 50 && s > 0.2 && v > 0.85) ||
+		(h > 280 && s > 0.2 && s < 0.7 && v > 0.85)
+	) {
+		return DARK_BLUSH;
+	} else {
+		return LIGHT_BLUSH;
+	}
 }
 
 export function getTileColor(tile: TileType, season: Season) {
-  switch (tile) {
-    case TileType.Dirt:
-    case TileType.ElevatedDirt:
-      if (season === Season.Autumn) {
-        return 0xedd29eff;
-      } else if (season === Season.Winter) {
-        return 0xd9c2a1ff;
-      } else {
-        return 0xf5d99bff;
-      }
-    case TileType.Water:
-    case TileType.WalkableWater:
-    case TileType.Boat:
-      return 0x6dbdecff;
-    case TileType.Grass:
-      if (season === Season.Autumn) {
-        return 0xddcf71ff;
-      } else if (season === Season.Winter) {
-        return 0xe1ebf8ff;
-      } else {
-        return 0x7cc991ff;
-      }
-    case TileType.Ice:
-    case TileType.WalkableIce:
-      return 0xc1dcecff;
-    case TileType.SnowOnIce:
-      return 0xe4eefbff;
-    case TileType.Wood:
-      return 0xd7ac7eff;
-    case TileType.Stone:
-      return 0x9da6abff;
-    case TileType.Stone2:
-      return 0xa0a691ff;
-    case TileType.None:
-    case TileType.WallH:
-    case TileType.WallV:
-      return BLACK;
-    default:
-      invalidEnum(tile);
-      return BLACK;
-  }
+	switch (tile) {
+		case TileType.Dirt:
+		case TileType.ElevatedDirt:
+			if (season === Season.Autumn) {
+				return 0xedd29eff;
+			} else if (season === Season.Winter) {
+				return 0xd9c2a1ff;
+			} else {
+				return 0xf5d99bff;
+			}
+		case TileType.Water:
+		case TileType.WalkableWater:
+		case TileType.Boat:
+			return 0x6dbdecff;
+		case TileType.Grass:
+			if (season === Season.Autumn) {
+				return 0xddcf71ff;
+			} else if (season === Season.Winter) {
+				return 0xe1ebf8ff;
+			} else {
+				return 0x7cc991ff;
+			}
+		case TileType.Ice:
+		case TileType.WalkableIce:
+			return 0xc1dcecff;
+		case TileType.SnowOnIce:
+			return 0xe4eefbff;
+		case TileType.Wood:
+			return 0xd7ac7eff;
+		case TileType.Stone:
+			return 0x9da6abff;
+		case TileType.Stone2:
+			return 0xa0a691ff;
+		case TileType.None:
+		case TileType.WallH:
+		case TileType.WallV:
+			return BLACK;
+		default:
+			invalidEnum(tile);
+			return BLACK;
+	}
 }

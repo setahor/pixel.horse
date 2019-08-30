@@ -4,16 +4,16 @@ import { faArrowLeft, faArrowRight, faArrowUp, faArrowDown } from '../../../clie
 import { contactEmail } from '../../../client/data';
 
 @Component({
-  selector: 'help',
-  templateUrl: 'help.pug',
-  styleUrls: ['help.scss'],
+	selector: 'help',
+	templateUrl: 'help.pug',
+	styleUrls: ['help.scss'],
 })
 export class Help {
-  readonly leftIcon = faArrowLeft;
-  readonly rightIcon = faArrowRight;
-  readonly upIcon = faArrowUp;
-  readonly downIcon = faArrowDown;
-  readonly emotes = emojis.map(e => e.names[0]);
-  readonly mac = /Macintosh/.test(navigator.userAgent);
-  readonly contactEmail = contactEmail;
+	readonly leftIcon = faArrowLeft;
+	readonly rightIcon = faArrowRight;
+	readonly upIcon = faArrowUp;
+	readonly downIcon = faArrowDown;
+	readonly emotes = emojis.map(e => e.names[0]);
+	readonly mac = /Macintosh/.test(navigator.userAgent);
+	readonly contactEmail = contactEmail;
 }
