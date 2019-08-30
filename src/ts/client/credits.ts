@@ -52,6 +52,12 @@ export const CREDITS: Credit[] = [
     title: 'Programmer',
     avatarIndex: 4,
     links: ['https://github.com/Stubenhocker1399']
+  },
+  {
+    name: 'Luney',
+    title: 'Programmer',
+    avatarIndex: 5,
+    links: ['https://twitter.com/luneythesnep', 'https://github.com/LunarMist']
   }
 ];
 
