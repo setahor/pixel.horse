@@ -8,8 +8,15 @@ A game of ponies building a town
 * [gulp](http://gulpjs.com/) `npm install -g gulp`
 * MongoDB: [download link](https://www.mongodb.com/download-center/community) and [installation instructions](https://docs.mongodb.com/manual/administration/install-community/)
 * [ImageMagick](https://imagemagick.org/script/download.php#windows) (optional, required for generating preview gifs in animation tool)
+* [Git LFS](https://git-lfs.github.com/)
+
+## Before you clone
+
+**Ensure you have Git LFS installed before you clone the repo!** Git LFS is required to pull down the asset files the game uses, as storing them in normal Git would stuff up the tree pretty badly.
 
 ## Installation
+
+Once you have the project cloned, open your terminal of choice (Command Prompt, bash, etc), navigate to the directory you cloned the project in, and run:
 
 ```bash
 npm install
