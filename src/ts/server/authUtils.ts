@@ -69,8 +69,8 @@ export async function updateAuthInfo(
 	}
 
 	if (Object.keys(changes).length > 0) {
-		Object.assign(auth, changes as IAuth);
-		await updateAuth(auth._id, changes as IAuth);
+		Object.assign(auth, changes);
+		await updateAuth(auth._id, changes);
 	}
 }
 
@@ -102,5 +102,5 @@ async function verifyOrRestoreAuth(auth: IAuth, mergeAccount: string | undefined
 	}
 
 	Object.assign(auth, changes);
-	await updateAuth(auth._id, changes as IAuth);
+	await updateAuth(auth._id, changes);
 }
